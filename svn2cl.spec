@@ -1,6 +1,6 @@
 %define name svn2cl
-%define version 0.8
-%define release %mkrel 2
+%define version 0.9
+%define release %mkrel 1
 
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: %{name}
