@@ -1,6 +1,6 @@
 %define name svn2cl
 %define version 0.9
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: %{name}
@@ -9,6 +9,7 @@ Release: %{release}
 Source0: %{name}-%{version}.tar.bz2
 Patch0: svn2cl-0.8-accum.patch
 Patch1: svn2cl-0.6-authors.patch
+Patch2: svn2cl-fix-stripping.patch
 License: GPL
 Group: Development/Other
 Url: http://ch.tudelft.nl/~arthur/svn2cl/
@@ -26,6 +27,7 @@ places.
 %setup -q
 %patch0 -p1 -b .accum
 %patch1 -p1 -b .authors
+%patch2 -p1 -b .strip
 chmod 0644 ChangeLog NEWS README TODO authors.xml
 chmod 0755 convert_authors.pl
 %build
