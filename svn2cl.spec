@@ -1,12 +1,12 @@
 %define name svn2cl
-%define version 0.9
-%define release %mkrel 2
+%define version 0.10
+%define release %mkrel 1
 
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{version}.tar.bz2
+Source0: http://ch.tudelft.nl/~arthur/svn2cl/%name-%version.tar.gz
 Patch0: svn2cl-0.8-accum.patch
 Patch1: svn2cl-0.6-authors.patch
 Patch2: svn2cl-fix-stripping.patch
