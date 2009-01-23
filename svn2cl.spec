@@ -1,15 +1,12 @@
 %define name svn2cl
-%define version 0.10
-%define release %mkrel 2
+%define version 0.11
+%define release %mkrel 1
 
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: %{name}
 Version: %{version}
 Release: %{release}
 Source0: http://ch.tudelft.nl/~arthur/svn2cl/%name-%version.tar.gz
-Patch0: svn2cl-0.8-accum.patch
-Patch1: svn2cl-0.6-authors.patch
-Patch2: svn2cl-fix-stripping.patch
 License: GPL
 Group: Development/Other
 Url: http://ch.tudelft.nl/~arthur/svn2cl/
@@ -25,11 +22,8 @@ places.
 
 %prep
 %setup -q
-%patch0 -p1 -b .accum
-%patch1 -p1 -b .authors
-%patch2 -p1 -b .strip
+sed -i -e 's|^XSL="$dir/|XSL="%{_datadir}/svn2cl/|' svn2cl.sh
 chmod 0644 ChangeLog NEWS README TODO authors.xml
-chmod 0755 convert_authors.pl
 %build
 
 %install
@@ -47,9 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog NEWS README TODO authors.xml convert_authors.pl
+%doc ChangeLog NEWS README TODO authors.xml
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_mandir}/*/*
-
-
