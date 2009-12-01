@@ -1,4 +1,4 @@
-%define subrel 1
+%define subrel 2
 
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: svn2cl
