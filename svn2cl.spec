@@ -1,9 +1,11 @@
+%define subrel 1
+
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: svn2cl
-Version: 0.11
-Release: %mkrel 3
+Version: 0.12
+Release: %mkrel 0
 Source0: http://ch.tudelft.nl/~arthur/svn2cl/%name-%version.tar.gz
-Patch0: svn2cl-0.11-accum.patch
+Patch0: svn2cl-0.12-accum.patch
 Patch1: svn2cl-0.11-authors.patch
 Patch2: svn2cl-fix-stripping.patch
 License: BSD
@@ -21,9 +23,9 @@ places.
 
 %prep
 %setup -q
-%patch0 -p1 -b .accum
+%patch0 -p0 -b .accum
 %patch1 -p1 -b .authors
-%patch2 -p1 -b .strip
+%patch2 -p0 -b .strip
 sed -i -e 's|^XSL="$dir/|XSL="%{_datadir}/svn2cl/|' svn2cl.sh
 chmod 0644 ChangeLog NEWS README TODO authors.xml
 chmod 0755 convert_authors.pl
