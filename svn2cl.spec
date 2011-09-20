@@ -1,8 +1,6 @@
-%define subrel 2
-
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: svn2cl
-Version: 0.12
+Version: 0.13
 Release: %mkrel 1
 Source0: http://ch.tudelft.nl/~arthur/svn2cl/%name-%version.tar.gz
 Patch0: svn2cl-0.12-accum.patch
@@ -22,10 +20,12 @@ several changelog-like scripts using common xslt constructs found in different
 places.
 
 %prep
+
 %setup -q
 %patch0 -p0 -b .accum
 %patch1 -p1 -b .authors
 %patch2 -p0 -b .strip
+
 sed -i -e 's|^XSL="$dir/|XSL="%{_datadir}/svn2cl/|' svn2cl.sh
 chmod 0644 ChangeLog NEWS README TODO authors.xml
 chmod 0755 convert_authors.pl
@@ -34,6 +34,7 @@ chmod 0755 convert_authors.pl
 
 %install
 rm -rf %{buildroot}
+
 install -d %{buildroot}%{_datadir}/%{name}
 install -m 755 svn2cl.sh %{buildroot}%{_datadir}/%{name}
 install -d %{buildroot}%{_bindir}
