@@ -1,0 +1,13 @@
+Index: svn2cl.sh
+===================================================================
+--- svn2cl.sh
++++ svn2cl.sh	2009-11-30 10:36:41.000000000 +0100
+@@ -305,7 +305,7 @@
+ # try to determin a prefix to strip from all paths
+ if [ "$STRIPPREFIX" = "AUTOMATICALLY-DETERMINED" ]
+ then
+-  STRIPPREFIX=`LANG=C eval "$SVNINFOCMD" | $AWK '/^URL:/{url=$2} /^Repository Root:/{root=$3} END{if(root){print substr(url,length(root)+2)}else{n=split(url,u,"/");print u[n]}}'`
++  STRIPPREFIX=`LANGUAGE=C eval "$SVNINFOCMD" 2> /dev/null | $AWK '/^URL:/{url=$2} /^Repository Root:/{root=$3} END{if(root){print substr(url,length(root)+2)}else{n=split(url,u,"/");print u[n]}}'`
+   STRIPPREFIX=`echo "$STRIPPREFIX" | sed 's/%20/ /g'`
+ fi
+ 

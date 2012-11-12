@@ -1,0 +1,66 @@
+--- svn2cl.sh	2010-10-23 13:59:12.000000000 +0200
++++ svn2cl.sh.oden	2011-09-20 13:30:32.234804656 +0200
+@@ -49,6 +49,7 @@ REPARAGRAPH="no"
+ SEPARATEDAYLOGS="no"
+ ACTIONS="no"
+ CHANGELOG=""
++CHANGELOG_BAK=""
+ OUTSTYLE="cl"
+ SVNLOGCMD="svn --verbose --xml log"
+ SVNINFOCMD="svn --non-interactive info"
+@@ -58,6 +59,7 @@ TITLE="ChangeLog"
+ REVISION_LINK="#r"
+ TICKET_LINK=""
+ TMPFILES=""
++ACCUM="no"
+ AWK="awk"
+ 
+ # do command line checking
+@@ -166,6 +168,10 @@ do
+       OUTSTYLE="html"
+       shift
+       ;;
++    --accum)
++      ACCUM="yes"
++      shift
++      ;;
+     -r|--revision|-c|--change|--targets|-l|--limit)
+       # add these as extra options to the log command (with argument)
+       arg=`echo "$2" | sed "s/'/'\"'\"'/g"`
+@@ -236,6 +242,7 @@ do
+       echo "  --stdout             output to stdout instead of ChangeLog"
+       echo "  --authors=FILE       file to read for authors"
+       echo "  --html               output as html instead of plain text"
++      echo "  --accum              add to an existing file"
+       echo "  -h, --help           display this help and exit"
+       echo "  -V, --version        output version information and exit"
+       echo ""
+@@ -313,6 +320,19 @@ fi
+ # redirect stdout to the changelog file if needed
+ if [ "x$CHANGELOG" != "x-" ]
+ then
++  if [ "$ACCUM" = "yes" ]
++  then
++    date=`sed -ne 's/^\([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\s\+\(\w\+\s\+\)\?[0-9][0-9]:[0-9][0-9]\).*/\1/;T;p;q' $CHANGELOG 2>/dev/null`
++    if [ -n "$date" ]
++    then
++      SVNLOGCMD="$SVNLOGCMD -r 'HEAD:{$date}'"
++    else
++        echo "no date found in existing changelog file, accum skipped"
++        ACCUM="no"
++    fi
++    CHANGELOG_BAK="$CHANGELOG.bak"
++    cp -f "$CHANGELOG" "$CHANGELOG_BAK"
++  fi
+   exec > "$CHANGELOG"
+ fi
+ 
+@@ -336,6 +356,8 @@ eval "$SVNLOGCMD" | \
+            --nonet \
+            "$XSL" -
+ 
++[ -n "$CHANGELOG_BAK" ] && cat "$CHANGELOG_BAK"
++
+ # clean up temporary files
+ [ -n "$TMPFILES" ] && eval "rm -f $TMPFILES"
+ 

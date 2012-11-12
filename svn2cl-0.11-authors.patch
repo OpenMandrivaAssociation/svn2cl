@@ -1,0 +1,32 @@
+diff -urN svn2cl-0.11.orig/README svn2cl-0.11/README
+--- svn2cl-0.11.orig/README	2008-04-06 15:37:06.000000000 +0200
++++ svn2cl-0.11/README	2009-03-01 22:44:19.000000000 +0100
+@@ -84,6 +84,15 @@
+ layer and xsltproc. More information is available here:
+ http://www.cosmo-system.jp/iwasa/svn2clwin.html
+ 
++AUTHORS FILES
++=============
++
++svn2cl can read authors file formatted as XML to convert login to full
++names with email address.
++To convert colon-separated files used by cvs2cl, the
++convert_authors.pl perl script can be used (it requires the
++XML::Simple perl module).
++
+ NOTES
+ =====
+ 
+diff -urN svn2cl-0.11.orig/convert_authors.pl svn2cl-0.11/convert_authors.pl
+--- svn2cl-0.11.orig/convert_authors.pl	1970-01-01 01:00:00.000000000 +0100
++++ svn2cl-0.11/convert_authors.pl	2009-03-01 22:44:19.000000000 +0100
+@@ -0,0 +1,9 @@
++#!/usr/bin/perl
++
++use XML::Simple;
++
++my @authors;
++while (<>) {
++    /^(.*?):(.*)$/ and push @authors, { uid => $1, content => $2 };
++}
++print XMLout({ author => \@authors }, RootName => "authors");
