@@ -52,3 +52,80 @@ rm -rf %{buildroot}
 %{_bindir}/%{name}
 %{_datadir}/%{name}
 %{_mandir}/*/*
+
+
+%changelog
+* Tue Sep 20 2011 Oden Eriksson <oeriksson@mandriva.com> 0.13-1mdv2012.0
++ Revision: 700553
+- 0.13
+
+* Wed Dec 08 2010 Oden Eriksson <oeriksson@mandriva.com> 0.12-1.2mdv2011.0
++ Revision: 615052
+- the mass rebuild of 2010.1 packages
+
+* Tue Dec 01 2009 Nicolas Lécureuil <nlecureuil@mandriva.com> 0.12-0.2mdv2010.1
++ Revision: 472235
+- Fix accum patch
+- Update to 0.12
+
+* Sun Sep 20 2009 Thierry Vignaud <tv@mandriva.org> 0.11-3mdv2010.0
++ Revision: 445268
+- rebuild
+
+* Sun Mar 01 2009 Frederik Himpe <fhimpe@mandriva.org> 0.11-2mdv2009.1
++ Revision: 346836
+- Readd patches which were silently dropped in the previous release:
+  they are used by software in Mandriva's svn
+- Fix license
+- SPEC file clean-ups
+
+* Fri Jan 23 2009 Jérôme Soyer <saispo@mandriva.org> 0.11-1mdv2009.1
++ Revision: 332891
+- New upstream release
+
+* Fri Aug 08 2008 Thierry Vignaud <tv@mandriva.org> 0.10-2mdv2009.0
++ Revision: 269396
+- rebuild early 2009.0 package (before pixel changes)
+
+* Sat May 17 2008 Funda Wang <fwang@mandriva.org> 0.10-1mdv2009.0
++ Revision: 208489
+- New version 0.10
+
+* Wed Jan 02 2008 Olivier Blin <blino@mandriva.org> 0.9-2mdv2008.1
++ Revision: 140863
+- restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Tue Sep 18 2007 Thierry Vignaud <tv@mandriva.org> 0.9-2mdv2008.0
++ Revision: 89520
+- patch 2: fix auto guessing path to strip
+
+* Thu Apr 19 2007 Olivier Blin <blino@mandriva.org> 0.9-1mdv2008.0
++ Revision: 14989
+- 0.9
+
+
+* Fri Dec 29 2006 Olivier Blin <oblin@mandriva.com> 0.8-2mdv2007.0
++ Revision: 102585
+- fix accum option (thanks Pixel for the report)
+
+* Thu Dec 28 2006 Olivier Blin <oblin@mandriva.com> 0.8-1mdv2007.1
++ Revision: 102380
+- 0.8
+- Import svn2cl
+
+* Thu Jun 22 2006 Olivier Blin <oblin@mandriva.com> 0.6-3mdv2007.0
+- Patch0: don't remove first entry of previous log in --accum mode
+  (looks like svn log has a new dates handling behavior)
+
+* Mon Mar 20 2006 Olivier Blin <oblin@mandriva.com> 0.6-2mdk
+- Patch0: add --accum option
+- Patch1: add doc about authors file and perl script to convert
+  colon-separated authors file to XML
+- package authors.xml example file and convert_authors.pl script
+
+* Wed Mar 15 2006 Olivier Blin <oblin@mandriva.com> 0.6-1mdk
+- initial Mandriva release
+
