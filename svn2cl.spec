@@ -1,7 +1,7 @@
 Summary: Generator of ChangeLog(s) from `svn log` output
 Name: svn2cl
 Version: 0.13
-Release: %mkrel 1
+Release: 2
 Source0: http://ch.tudelft.nl/~arthur/svn2cl/%name-%version.tar.gz
 Patch0: svn2cl-0.12-accum.patch
 Patch1: svn2cl-0.11-authors.patch
