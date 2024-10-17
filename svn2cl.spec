@@ -8,7 +8,7 @@ Patch1: svn2cl-0.11-authors.patch
 Patch2: svn2cl-fix-stripping.patch
 License: BSD
 Group: Development/Other
-Url: http://ch.tudelft.nl/~arthur/svn2cl/
+Url: https://ch.tudelft.nl/~arthur/svn2cl/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: libxslt-proc
 BuildArch: noarch
